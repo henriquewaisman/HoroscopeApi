@@ -1,14 +1,13 @@
 # ♈ Horoscope API
 
-Uma API REST simples desenvolvida em ASP.NET Core para fornecer previsões diárias de horóscopo com base no signo do zodíaco.
+Uma API REST simples desenvolvida em ASP.NET Core para fornecer previsões de horóscopo com base no signo do zodíaco.
 
 ---
 
 ## ✨ Funcionalidades
 
-- 📅 Retorna o horóscopo diário de um signo
+- 📅 Retorna o horóscopo diário, semanal ou mensal (a depender do plano do usuário) de um signo
 - 🔀 Estrutura limpa com separação por camadas (Controller, Service, Entidade)
-- 🧩 Pronto para extensão futura com mais funcionalidades (ex: horóscopo semanal, compatibilidade, etc)
 
 ---
 
@@ -16,7 +15,7 @@ Uma API REST simples desenvolvida em ASP.NET Core para fornecer previsões diár
 
 ### Pré-requisitos
 
-- [.NET 6 SDK](https://dotnet.microsoft.com/download) ou superior
+- [.NET 8 SDK](https://dotnet.microsoft.com/download) ou superior
 - Git
 
 ### Passos
@@ -58,9 +57,8 @@ GET /horoscope/aries
 
 ```json
 {
-  "sign": "aries",
   "date": "2025-05-25",
-  "prediction": "Hoje é um ótimo dia para novos começos."
+  "horoscope_data": "Hoje é um ótimo dia para novos começos."
 }
 ```
 
@@ -70,16 +68,23 @@ GET /horoscope/aries
 
 ```
 HoroscopeApi/
-├── Controllers/         # Controladores da API
-│   └── HoroscopeController.cs
-├── Entidades/           # Modelos de dados
-│   └── Horoscope.cs
-├── Services/            # Lógica de negócio
-│   ├── IHoroscopeService.cs
-│   └── HoroscopeService.cs
-├── Program.cs           # Ponto de entrada da aplicação
-├── appsettings.json     # Arquivo de configuração
-└── dev.http             # Exemplos de requisições HTTP
+├── Controllers/        
+│   ├── BronzeController.cs # Controlador do Plano Bronze (retorna previsão mensal)
+│   ├── SilverController.cs # Controlador do Plano Prata (retorna previsão semanal)
+│   └── GoldController.cs   # Controlador do Plano Ouro (retorna previsão diária)
+├── Entidades/           
+│   └── HoroscopoData/ # Acessa a mensagem da previsão e a data especificada pelo plano no arquivo Json da API
+│       ├── BronzeData.cs # Recupera o mês e sua mensagem
+│       ├── SilerData.cs  # Recupera a semana e sua mensagem
+│       └── GoldData.cs   # Recupera o dia e sua mensagem
+│   └── HoroscopoResponse/ # Usa o "TierData" e transforma em uma response para a API
+│       ├── BronzeResponse.cs
+│       ├── SilerResponse.cs
+│       └── GoldResponse.cs
+├── Services/           
+│   └── HoroscopeService.cs # Lógica do négocio proposto
+└── Program.cs           # Ponto de entrada da aplicação
+
 ```
 
 ---
@@ -91,14 +96,3 @@ HoroscopeApi/
 - RESTful Architecture
 
 ---
-
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
----
-
-## 👤 Autor
-
-Henrique Waisman  
-[GitHub](https://github.com/henriquewaisman)
