@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Menu</title></head>
+<body>
+    <h2>Bem-vindo, {{ session.nickname }}!</h2>
+    {% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+    <form method="POST">
+        <label>Escolha seu signo:</label>
+        <select name="sign">
+            {% for s in valid_signs %}
+                <option value="{{ s }}">{{ s.title() }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label>Tipo de consulta:</label>
+        {% for e in endpoints %}
+            <input type="radio" name="endpoint" value="{{ e }}" required>
+            {{ labels[e] }}
+        {% endfor %}<br><br>
+
+        <input type="submit" value="Consultar Horóscopo">
+    </form>
+    <br><a href="{{ url_for('logout') }}">Sair</a>
+</body>
+</html>

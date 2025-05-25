@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>Resultado</title></head>
+<body>
+    <h2>🔮 Horóscopo {{ tipo }} para {{ nickname }} ({{ sign.title() }})</h2>
+    {% for key, value in result.items() %}
+        <p><strong>{{ key.title() }}:</strong> {{ value }}</p>
+    {% endfor %}
+    <br><a href="{{ url_for('menu') }}">Voltar</a>
+</body>
+</html>
