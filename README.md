@@ -83,7 +83,16 @@ HoroscopeApi/
 │       └── GoldResponse.cs
 ├── Services/           
 │   └── HoroscopeService.cs # Lógica do négocio proposto
-└── Program.cs           # Ponto de entrada da aplicação
+├── Program.cs           # Ponto de entrada da aplicação
+├── Cliente/   
+│   ├── templates/
+│       ├── login.html # Página web do login
+│       ├── register.html # Página web do cadastro
+│       ├── menu.html # Página web do menu que permite pedir as mensagens
+│       ├── result.html # Página web com o resultado da requisição
+├── users.db # Banco SQLIte para guardar os usuários
+└── app.py # Aplicação do cliente
+
 
 ```
 
@@ -94,5 +103,8 @@ HoroscopeApi/
 - C#
 - ASP.NET Core Web API
 - RESTful Architecture
+- Python
+- SQLite
+- Flask
 
 ---
