@@ -108,3 +108,5 @@ HoroscopeApi/
 - Flask
 
 ---
+## 🖼️ Diagrama da Aplicação
+![diagrama](https://github.com/henriquewaisman/HoroscopeApi/blob/main/diagrama.png)
